@@ -1,8 +1,7 @@
 import React from 'react'
 
 function cartReducer(state, { type, payload }) {
-  console.log(state)
-    console.log(payload)
+
   switch (type) {
     case "ADD_TO_CART":
       return {
@@ -14,7 +13,11 @@ function cartReducer(state, { type, payload }) {
         ...state,
         cart: state.cart.filter(item => item?.product?.id !== payload?.id)
       };
-
+    case "CLEAR_CART":
+      return {
+        ...state,
+        cart: [] // completely empty the cart
+      };
     default:
       return state
   }

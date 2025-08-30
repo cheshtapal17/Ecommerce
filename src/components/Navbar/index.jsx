@@ -7,21 +7,26 @@ function Navbar() {
   const [isAccountDropDownOpen, setIsAccountDropDownOpen] = useState(false)
   const navigate = useNavigate();
   const { token, loginDispatch } = useLogin();
-  const {cart}=useCart();
+  const { cart ,cartDispatch} = useCart();
 
   const onLoginClick = () => {
     if (token?.access_token) {
-            loginDispatch({
+      loginDispatch({
         type: "LOGOUT"
       })
-      navigate('/auth/login')
+      localStorage.removeItem("token");
+      localStorage.removeItem("cart");
+      cartDispatch({
+        type:"CLEAR_CART"
+      })
+            navigate('/auth/login')
     } else {
       navigate('/auth/login')
     }
   }
 
   return (
-    <header className='flex bg-green-900 text-slate-50 justify-between' style={{padding:"0 17px"}}>
+    <header className='flex bg-green-900 text-slate-50 justify-between' style={{ padding: "0 17px" }}>
 
       <div>
         <h1 className='text-5xl  hover:cursor-pointer' onClick={() => navigate("/")}>Shop It</h1>
@@ -39,8 +44,8 @@ function Navbar() {
             account_circle
           </span>
 
-          {isAccountDropDownOpen && <div className='absolute bg-amber-50 rounded-sm' style={{right:"4px"}}>
-            <button onClick={onLoginClick} className='hover:cursor-pointer text-black ' style={{padding:"3px 17px"}}>
+          {isAccountDropDownOpen && <div className='absolute bg-amber-50 rounded-sm' style={{ right: "4px" }}>
+            <button onClick={onLoginClick} className='hover:cursor-pointer text-black ' style={{ padding: "3px 17px" }}>
               {token.access_token ? "Logout" : "Login"}
             </button>
           </div>}
