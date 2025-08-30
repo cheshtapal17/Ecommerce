@@ -1,3 +1,3 @@
 export const findProductInCart = (cart, id) => {
-    return cart?.length > 0 && cart.some(product => product.product.id === id);
+    return cart?.length > 0 && cart.some(product => product?.product?.id === id);
 };

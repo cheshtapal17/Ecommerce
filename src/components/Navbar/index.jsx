@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useLogin } from '../../context/login-context';
+import { useCart } from '../../context/cart-context';
 
 function Navbar() {
   const [isAccountDropDownOpen, setIsAccountDropDownOpen] = useState(false)
   const navigate = useNavigate();
   const { token, loginDispatch } = useLogin();
+  const {cart}=useCart();
 
   const onLoginClick = () => {
     if (token?.access_token) {
@@ -31,6 +33,7 @@ function Navbar() {
         <span onClick={() => navigate("/cart")} className="material-symbols-outlined text-3xl hover:cursor-pointer">
           shopping_cart
         </span>
+        <span>{cart.length}</span>
         <div className='relative'>
           <span onClick={() => setIsAccountDropDownOpen(!isAccountDropDownOpen)} className="material-symbols-outlined text-3xl hover:cursor-pointer">
             account_circle
@@ -41,7 +44,6 @@ function Navbar() {
               {token.access_token ? "Logout" : "Login"}
             </button>
           </div>}
-
         </div>
       </nav>
     </header>

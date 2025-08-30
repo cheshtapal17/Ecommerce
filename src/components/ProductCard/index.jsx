@@ -9,12 +9,16 @@ function ProductCard({ product }) {
     const navigate = useNavigate();
 
     const onCartClick = (product) => {
-        !isProductInCart ?
+        if (!isProductInCart) {
+            localStorage.setItem('cart',JSON.stringify([...cart,product]))
             cartDispatch({
                 type: 'ADD_TO_CART',
                 payload: { product }
-            }) :
+            })
+        }
+        else {
             navigate('/cart');
+        }
     }
 
     return (

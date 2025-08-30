@@ -8,7 +8,7 @@ const LoginProvider = ({ children }) => {
     const initialState = {
         email: '',
         password: '',
-        token: '',
+        token: {access_token: localStorage.getItem('token')||"", refresh_token:''},
     }
 
     const [{ email, password, token }, loginDispatch] = useReducer(loginReducer, initialState);
