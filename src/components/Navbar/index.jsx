@@ -38,7 +38,7 @@ function Navbar() {
         <span onClick={() => navigate("/cart")} className="material-symbols-outlined text-3xl hover:cursor-pointer">
           shopping_cart
         </span>
-        <span>{cart.length}</span>
+        <span className='absolute text-amber-100 top-2 right-10'>{cart.length}</span>
         <div className='relative'>
           <span onClick={() => setIsAccountDropDownOpen(!isAccountDropDownOpen)} className="material-symbols-outlined text-3xl hover:cursor-pointer">
             account_circle
