@@ -54,7 +54,7 @@ export const Login = () => {
                     Login </button>
             </div>
             <div className="" style={{ margin: "8px 80px 0px 80px" }}>
-                <button className="d-flex align-middle hover:cursor-pointer"> Create New Account <span className="material-symbols-outlined">
+                <button className="d-flex align-middle hover:cursor-pointer" onClick={()=>navigate("/auth/signup")}> Create New Account <span className="material-symbols-outlined">
                     chevron_forward
                 </span></button>
             </div>
